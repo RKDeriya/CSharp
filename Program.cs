@@ -1,55 +1,71 @@
-﻿using System;
+﻿using JioMartGeneric;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Generic
+namespace JioMartGeneric
 {
-    public class Program
+    internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            //create an instance with data type string
-            Student<string> studentName = new Student<string>();
-
-            //create an instance with data type int
-            Student<int> studentId = new Student<int>();
-
-            studentName.Data = "Rajesh Patel";
-            Console.WriteLine(studentName.Data);
-
-
-
-            //calling function with string data
-            studentName.displayData("Aman");
-
-            //calling function with integer data
-            studentId.displayData(15);
-            Console.ReadKey();
         }
     }
 
-    public class Student<T>
+    public class CreatedOn<T>
     {
-        public T Data;
-
-        public T data
-        {
-            get { return Data; }
-            set { Data = value; }
-        }
-        ////constuctor
-        //public Student(T Data)
-        //{
-        //    this.Data = Data;
-        //    Console.WriteLine($"Data Passed is: {this.Data}");       
-        //}
-
-        public void displayData(T Data)
-        {
-            Console.WriteLine($"this is the for pass the data{Data}");
-        }
+        public T CreatedOn { get; set; }
+        public T UpdatedOn { get; set; }
     }
+    public class UserDetails: CreatedOn<T>
+    {
+      
+        public int UserDetailsId { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+        public string UserAddress { get; set; }
+        public string UserMobileNo { get; set; }
+        public float UserWalletBalance { get; set; }
+    }
+
+    public class Category: CreatedOn<T>
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+    }
+
+    public class ProductDetails: CreatedOn<T>
+    {
+        public int ProductDetailsId { get; set; }
+        public string ProductName { get; set; }
+        public float ProductPrice { get; set; }
+        public int ProductStockQuantity { get; set; }
+        public int CategoryId { get; set; }
+        
+    }
+
+    public class CartDetails: CreatedOn<T>
+    {
+        public int CartDetailsId { get; set; }
+        public int ProductDetailsId { get; set; }
+        public int ProductQuantity { get; set; 
+        public float CartTotalPrice { get; set; }
+        public string CartOrderStatus { get; set; } = "Not Complete";
+        public int UserDetailsId { get; set; }
+     
+    }
+
+    public class OrderDetails: CreatedOn<T>
+{
+        public int OrderDetailsId { get; set; }
+        public int CartDetailsId { get; set; }
+        public string OrderPaymentMode { get; set; }
+        public int OrderTotalPrice { get; set; }
+        public string OrderDeliveryStatus { get; set; } = "InProgress";
+        public DateTime OrderDate { get; set; }
+      
+    }
+
 }
